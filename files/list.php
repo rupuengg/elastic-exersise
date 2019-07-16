@@ -8,8 +8,7 @@ try{
     $client = ClientBuilder::create()->build();
 
     $params = [
-        'index' => 'rup_index',
-        'id'    => 'rup_id'
+        'index' => 'rup_index'
     ];
 
     $response = $client->get($params);
