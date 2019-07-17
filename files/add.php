@@ -1,27 +1,12 @@
 <?php 
-
-$url = "http://localhost/elastic_search_excersie/data.txt";
-
-require_once("../config.php");
-
-require_once("./curl.php");
-
-use Elasticsearch\ClientBuilder;
+require_once "../config.php";
 
 try{
-    $client = ClientBuilder::create()->build();
+    $filename = "data.txt";
 
-    foreach(read($url) as $line){
-        $res = json_decode(fgets($line));
+    $obj = new Common($filename);
 
-        $params = [
-            'index' => 'rup_index',
-            'id' => $res->id,
-            'body' => ['data' => $res->doc]
-        ];
-        
-        $response = $client->index($params);
-    }
+    $obj->insert();
     
     echo 'OK';
 }catch(Exception $e){
