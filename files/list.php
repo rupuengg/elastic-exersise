@@ -1,19 +1,20 @@
 <?php 
+require_once "../config.php";
+    
+header('Content-Type:application/json');
 
-require_once("../config.php");
-
-use Elasticsearch\ClientBuilder;
+$docId = !empty($_GET['doc_id']) ? $_GET['doc_id'] : 'ufIxzS49-18lkor8Wg-Akq4R';
 
 try{
-    $client = ClientBuilder::create()->build();
+    $filename = "data.txt";
 
-    $params = [
-        'index' => 'rup_index'
-    ];
+    $obj = new Common($filename);
 
-    $response = $client->get($params);
-        
-    echo '<pre>';print_r($response);echo '</pre>';
+    // Pass Index Id
+    $res = $obj->getDoc($docId);
+
+    // Show output as JSON
+    echo json_encode($res);
 }catch(Exception $e){
     print_r($e->getMessage());
 }

@@ -1,5 +1,12 @@
-<?php
+# Init
 
+Index page where you can see two link one for add data and other for view single doc
+
+## Common Class
+
+It's use for read from reading, writing and viewing doc from elasticsearch
+
+```bash
 class Common{
     private $filename;
     private $client;
@@ -37,3 +44,4 @@ class Common{
         return $this->client->get($this->makeIndex($docId));
     }
 }
+```
